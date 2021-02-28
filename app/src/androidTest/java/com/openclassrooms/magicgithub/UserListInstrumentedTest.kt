@@ -30,7 +30,7 @@ class UserListInstrumentedTest {
     fun setup() {
 
         mActivityRule.activity.repository = Injection.createUserRepository()
-        currentUsersSize =  mActivityRule.activity.repository.getUsers().size
+        currentUsersSize =  mActivityRule.activity.repository.users.size
     }
 
     @Test

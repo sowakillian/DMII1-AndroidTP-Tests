@@ -75,7 +75,7 @@ class ListUserFragment: Fragment(), UserListAdapter.Listener  {
     }
 
     private fun loadData() {
-        adapter.updateList(Injection.createUserRepository().getUsers())
+        adapter.updateList(Injection.createUserRepository().users)
     }
 
     // ACTIONS ---

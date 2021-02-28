@@ -29,17 +29,17 @@ class UserRepositoryTest {
 
     @Test
     fun getUserWithSuccess(){
-        val usersActual = userRepository!!.getUsers()
+        val usersActual = userRepository!!.users
         val usersExpected = FAKE_USERS
         Assert.assertThat(usersActual, IsIterableContainingInAnyOrder.containsInAnyOrder<Any>(*usersExpected.toTypedArray()))
     }
 
     @Test
     fun generateRandomUserWithSuccess() {
-        userRepository!!.getUsers().clear()
+        userRepository!!.users.clear()
         userRepository!!.generateRandomUser()
-        val (id, login, avatarUrl) = userRepository!!.getUsers()[0]
-        Assert.assertEquals(1, userRepository!!.getUsers().size.toLong())
+        val (id, login, avatarUrl) = userRepository!!.users[0]
+        Assert.assertEquals(1, userRepository!!.users.size.toLong())
         Assert.assertTrue(FAKE_USERS_RANDOM.stream().map(User::avatarUrl).collect(Collectors.toList()).contains(avatarUrl))
         Assert.assertTrue(FAKE_USERS_RANDOM.stream().map(User::id).collect(Collectors.toList()).contains(id))
         Assert.assertTrue(FAKE_USERS_RANDOM.stream().map(User::login).collect(Collectors.toList()).contains(login))
@@ -50,8 +50,8 @@ class UserRepositoryTest {
 
     @Test
     fun deleteUserWithSuccess() {
-        val userToDelete = userRepository!!.getUsers()[0]
+        val userToDelete = userRepository!!.users[0]
         userRepository!!.deleteUser(userToDelete)
-        Assert.assertFalse(userRepository!!.getUsers().contains(userToDelete))
+        Assert.assertFalse(userRepository!!.users.contains(userToDelete))
     }
 }
