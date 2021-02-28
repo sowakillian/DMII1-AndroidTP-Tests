@@ -12,15 +12,9 @@ import com.openclassrooms.magicgithub.model.User
 
 class ListUserViewHolder(binding: ItemListUsersBinding) : RecyclerView.ViewHolder(binding.root) {
     // FOR DESIGN ---
-    private val avatar: ImageView
-    private val username: TextView
-    private val deleteButton: ImageButton
-
-    init {
-        avatar = binding.itemListUserAvatar
-        username = binding.itemListUserUsername
-        deleteButton = binding.itemListUserDeleteButton
-    }
+    private val avatar: ImageView = binding.itemListUserAvatar
+    private val username: TextView = binding.itemListUserUsername
+    private val deleteButton: ImageButton = binding.itemListUserDeleteButton
 
     fun bind(user: User, callback: UserListAdapter.Listener) {
         Glide.with(itemView.context)

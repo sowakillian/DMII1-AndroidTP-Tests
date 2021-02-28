@@ -28,6 +28,7 @@ class ListUserFragment: Fragment(), UserListAdapter.Listener  {
     // FOR DATA ---
     private lateinit var apiService: FakeApiService
     private lateinit var adapter: UserListAdapter
+    private lateinit var users: MutableList<User>
 
     // OVERRIDE ---
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
@@ -41,9 +42,9 @@ class ListUserFragment: Fragment(), UserListAdapter.Listener  {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         configureApi()
-        configureRecyclerView()
         configureFab()
         injectRepository()
+        configureRecyclerView()
     }
 
     override fun onResume() {
@@ -58,7 +59,9 @@ class ListUserFragment: Fragment(), UserListAdapter.Listener  {
 
     private fun configureRecyclerView() {
         recyclerView = binding.activityListUserRv
-        adapter = UserListAdapter(this)
+        apiService = FakeApiService()
+        users = repository.users
+        adapter = UserListAdapter(users, this)
         recyclerView.adapter = adapter
     }
 
