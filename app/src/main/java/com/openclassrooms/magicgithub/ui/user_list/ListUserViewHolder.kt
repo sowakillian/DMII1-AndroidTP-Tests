@@ -9,6 +9,8 @@ import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
 import com.openclassrooms.magicgithub.R
 import com.openclassrooms.magicgithub.model.User
+import javax.swing.text.View
+import javax.swing.text.html.ImageView
 
 // TODO Utiliser le view binding
 class ListUserViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
