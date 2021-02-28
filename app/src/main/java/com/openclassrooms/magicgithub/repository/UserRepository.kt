@@ -5,10 +5,7 @@ import com.openclassrooms.magicgithub.model.User
 
 class UserRepository(private val apiService: ApiService) {
 
-    val users: List<User>
-        get() {
-            return apiService.getUsers()
-        }
+    fun getUsers(): MutableList<User> = apiService.getUsers() as MutableList<User>
 
     fun generateRandomUser() {
         apiService.generateRandomUser()

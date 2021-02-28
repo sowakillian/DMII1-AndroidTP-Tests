@@ -7,17 +7,21 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
-import com.openclassrooms.magicgithub.R
+import com.openclassrooms.magicgithub.databinding.ItemListUsersBinding
 import com.openclassrooms.magicgithub.model.User
-import javax.swing.text.View
-import javax.swing.text.html.ImageView
 
-// TODO Utiliser le view binding
-class ListUserViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
+class ListUserViewHolder(binding: ItemListUsersBinding) : RecyclerView.ViewHolder(binding.root) {
     // FOR DESIGN ---
     private val avatar: ImageView
     private val username: TextView
     private val deleteButton: ImageButton
+
+    init {
+        avatar = binding.itemListUserAvatar
+        username = binding.itemListUserUsername
+        deleteButton = binding.itemListUserDeleteButton
+    }
+
     fun bind(user: User, callback: UserListAdapter.Listener) {
         Glide.with(itemView.context)
             .load(user.avatarUrl)
@@ -27,9 +31,4 @@ class ListUserViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         deleteButton.setOnClickListener { view: View? -> callback.onClickDelete(user) }
     }
 
-    init {
-        avatar = itemView.findViewById(R.id.item_list_user_avatar)
-        username = itemView.findViewById(R.id.item_list_user_username)
-        deleteButton = itemView.findViewById(R.id.item_list_user_delete_button)
-    }
 }
