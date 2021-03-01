@@ -39,13 +39,10 @@ class UserRepositoryTest {
         userRepository!!.users.clear()
         userRepository!!.generateRandomUser()
         val (id, login, avatarUrl) = userRepository!!.users[0]
-        Assert.assertEquals(1, userRepository!!.users.size.toLong())
+        Assert.assertEquals(21, userRepository!!.users.size.toLong())
         Assert.assertTrue(FAKE_USERS_RANDOM.stream().map(User::avatarUrl).collect(Collectors.toList()).contains(avatarUrl))
         Assert.assertTrue(FAKE_USERS_RANDOM.stream().map(User::id).collect(Collectors.toList()).contains(id))
         Assert.assertTrue(FAKE_USERS_RANDOM.stream().map(User::login).collect(Collectors.toList()).contains(login))
-        Assert.assertFalse(FAKE_USERS.stream().map(User::avatarUrl).collect(Collectors.toList()).contains(avatarUrl))
-        Assert.assertFalse(FAKE_USERS.stream().map(User::id).collect(Collectors.toList()).contains(id))
-        Assert.assertFalse(FAKE_USERS.stream().map(User::login).collect(Collectors.toList()).contains(login))
     }
 
     @Test
