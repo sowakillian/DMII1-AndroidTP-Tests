@@ -32,13 +32,13 @@ class UserListAdapter(users: List<User>, private val callback: Listener) : Recyc
 
     // PUBLIC API ---
     fun updateList(newList: List<User>) {
-        println("i update list")
-        println(users.count())
+        println("**i update list")
+        println("**" + users.count())
         val diffResult = DiffUtil.calculateDiff(UserDiffCallback(newList, users))
+        println("**$users")
         users.clear()
         users.addAll(ArrayList(newList))
-        println(users)
-        println(users.count())
+        println("**" + users.count())
         diffResult.dispatchUpdatesTo(this)
     }
 }

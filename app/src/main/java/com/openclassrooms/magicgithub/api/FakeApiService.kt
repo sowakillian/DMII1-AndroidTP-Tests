@@ -20,7 +20,7 @@ class FakeApiService : ApiService {
      * This user must be get from the [FakeApiServiceGenerator.FAKE_USERS_RANDOM] list.
      */
     override fun generateRandomUser() {
-        _users.add(FakeApiServiceGenerator.generateRandomUser())
+        _users.add(0, FakeApiServiceGenerator.generateRandomUser())
     }
 
     /**

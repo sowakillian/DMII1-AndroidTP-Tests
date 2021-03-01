@@ -28,6 +28,4 @@ class ListUserActivity : AppCompatActivity(){
         }.commit()
     }
 
-
-
 }

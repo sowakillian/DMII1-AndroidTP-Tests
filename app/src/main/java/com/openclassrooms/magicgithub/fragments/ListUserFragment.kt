@@ -49,7 +49,7 @@ class ListUserFragment: Fragment(), UserListAdapter.Listener  {
 
     override fun onResume() {
         super.onResume()
-        loadData()
+        loadData(scrollToTop = false)
     }
 
     // CONFIGURATION ---
@@ -60,7 +60,7 @@ class ListUserFragment: Fragment(), UserListAdapter.Listener  {
     private fun configureRecyclerView() {
         recyclerView = binding.activityListUserRv
         apiService = FakeApiService()
-        users = repository.users
+        users = UserRepository.getInstance(apiService).users
         adapter = UserListAdapter(users, this)
         recyclerView.adapter = adapter
     }
@@ -68,7 +68,7 @@ class ListUserFragment: Fragment(), UserListAdapter.Listener  {
     private fun configureFab() {
         binding.activityListUserFab.setOnClickListener { view: View? ->
             repository.generateRandomUser()
-            loadData()
+            loadData(scrollToTop = true)
         }
     }
 
@@ -77,14 +77,20 @@ class ListUserFragment: Fragment(), UserListAdapter.Listener  {
         repository = Injection.createUserRepository()
     }
 
-    private fun loadData() {
+    private fun loadData(scrollToTop: Boolean) {
+        println("**newusers" + users.count())
         adapter.updateList(Injection.createUserRepository().users)
+
+        if (scrollToTop) {
+            binding.activityListUserRv.layoutManager?.smoothScrollToPosition(recyclerView, null, 0);
+        }
+
     }
 
     // ACTIONS ---
     override fun onClickDelete(user: User) {
         Log.d(ListUserFragment::class.java.name, "User tries to delete a item.")
         repository.deleteUser(user)
-        loadData()
+        loadData(scrollToTop = false)
     }
 }

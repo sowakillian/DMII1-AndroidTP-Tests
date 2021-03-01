@@ -25,4 +25,15 @@ class UserRepository(private val apiService: ApiService) {
             apiService.deleteUser(user)
         }
     }
+
+    companion object {
+        private var instance: UserRepository? = null
+
+        fun getInstance(apiService: ApiService): UserRepository {
+            if (instance == null) {
+                instance = UserRepository(apiService = apiService)
+            }
+            return instance!!
+        }
+    }
 }
