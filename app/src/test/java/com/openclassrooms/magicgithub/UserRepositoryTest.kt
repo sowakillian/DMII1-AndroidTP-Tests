@@ -36,7 +36,6 @@ class UserRepositoryTest {
 
     @Test
     fun generateRandomUserWithSuccess() {
-        userRepository!!.users.clear()
         userRepository!!.generateRandomUser()
         val (id, login, avatarUrl) = userRepository!!.users[0]
         Assert.assertEquals(21, userRepository!!.users.size.toLong())
